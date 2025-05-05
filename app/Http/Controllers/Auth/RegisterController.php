@@ -30,6 +30,6 @@ class RegisterController extends Controller
         ]);
 
         Auth::login($user);
-        return redirect('/dashboard');
+        return redirect('/products');
     }
 }

@@ -5,14 +5,10 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
+// Redirect root to login page
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
-
-Route::resource('products', ProductController::class);
-
-
-Route::get('/', fn () => view('welcome'));
 
 // Guest routes
 Route::middleware('guest')->group(function () {
@@ -23,11 +19,8 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [RegisterController::class, 'register']);
 });
 
-// Authenticated route
+// Authenticated routes
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
+    Route::resource('products', ProductController::class);
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });

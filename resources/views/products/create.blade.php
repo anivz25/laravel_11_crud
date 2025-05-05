@@ -7,9 +7,12 @@
  <div class="float-start">
  Add New Product
  </div>
- <div class="float-end">
- <a href="{{ route('products.index') }}" class="btn 
-btn-primary btn-sm">&larr; Back</a>
+ <div class="float-end d-flex gap-2">
+  <form action="{{ route('logout') }}" method="POST" class="d-inline">
+   @csrf
+   <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+  </form>
+  <a href="{{ route('products.index') }}" class="btn btn-primary btn-sm">&larr; Back</a>
  </div>
  </div>
  <div class="card-body">
