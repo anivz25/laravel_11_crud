@@ -21,9 +21,11 @@
  </div>
  </div>
  <div class="card-body">
- <form action="{{ route('products.update', $product->id) }}" method="post">
+ <form action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
  @csrf
  @method("PUT")
+ <div class="row">
+ <div class="col-md-6">
  <div class="mb-3 row">
  <label for="code" class="col-md-4 col-form-label text-md-end text-start">Code</label>
  <div class="col-md-6">
@@ -70,7 +72,32 @@
  </div>
  </div>
  <div class="mb-3 row">
- <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Update">
+ <label for="image" class="col-md-4 col-form-label text-md-end text-start">Image</label>
+ <div class="col-md-6">
+ <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
+ @error('image')
+ <span class="text-danger">{{ $message }}</span>
+ @enderror
+ </div>
+ </div>
+ <div class="mb-3 row">
+ <div class="col-md-6 offset-md-4">
+ <input type="submit" class="btn btn-primary" value="Update">
+ </div>
+ </div>
+ </div>
+ <div class="col-md-6">
+ <div class="mb-3 row">
+ <div class="col-md-12">
+ @if($product->image)
+ <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid rounded" style="width: 100%; height: 400px; object-fit: cover;">
+ @else
+ <div class="text-muted">No image available</div>
+ @endif
+ </div>
+ </div>
+ </div>
+ </div>
  </div>
  </form>
  </div>

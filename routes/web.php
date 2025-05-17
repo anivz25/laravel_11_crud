@@ -10,11 +10,11 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-// Guest routes
+// Guest-only routes
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
-
+    
     Route::get('/register', [RegisterController::class, 'showRegister'])->name('register');
     Route::post('/register', [RegisterController::class, 'register']);
 });
