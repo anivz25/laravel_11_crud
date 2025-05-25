@@ -2,11 +2,11 @@
 @section('content')
 <div class="row justify-content-center mt-3">
  <div class="col-md-12">
- @session('success')
+ @if (session('success'))
  <div class="alert alert-success" role="alert">
- {{ $value }}
+ {{ session('success') }}
  </div>
- @endsession
+ @endif
  <div class="card">
  <div class="card-header d-flex justify-content-between align-items-center">
   <span>Product List</span>
@@ -16,9 +16,7 @@
   </form>
  </div>
  <div class="card-body">
- <a href="{{ route('products.create') }}" class="btn 
-btn-success btn-sm my-2"><i class="bi bi-plus-circle"></i> Add New 
-Product</a>
+ <a href="{{ route('products.create') }}" class="btn btn-success btn-sm my-2"><i class="bi bi-plus-circle"></i> Add New Product</a>
  <table class="table table-striped table-bordered">
  <thead>
  <tr>
@@ -33,24 +31,18 @@ Product</a>
 <tbody>
  @forelse ($products as $product)
 <tr>
- <th scope="row">{{ $loop->iteration 
-}}</th>
+ <th scope="row">{{ $loop->iteration }}</th>
  <td>{{ $product->code }}</td>
  <td>{{ $product->name }}</td>
  <td>{{ $product->quantity }}</td>
  <td>{{ $product->price }}</td>
  <td>
- <form action="{{ 
-route('products.destroy', $product->id) }}" method="post">
+ <form action="{{ route('products.destroy', $product->id) }}" method="post">
  @csrf
 @method('DELETE')
- <a href="{{ route('products.show', 
-$product->id) }}" class="btn btn-warning btn-sm"><i class="bi bieye"></i> Show</a>
- <a href="{{ route('products.edit', 
-$product->id) }}" class="btn btn-primary btn-sm"><i class="bi bipencil-square"></i> Edit</a> 
- <button type="submit" class="btn 
-btn-danger btn-sm" onclick="return confirm('Do you want to delete this 
-product?');"><i class="bi bi-trash"></i> Delete</button>
+ <a href="{{ route('products.show', $product->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-eye"></i> Show</a>
+ <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a> 
+ <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this product?');"><i class="bi bi-trash"></i> Delete</button>
  </form>
  </td>
  </tr>
@@ -68,5 +60,4 @@ product?');"><i class="bi bi-trash"></i> Delete</button>
  </div>
  </div> 
 </div>
- 
 @endsection

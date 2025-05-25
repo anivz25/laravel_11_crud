@@ -2,7 +2,7 @@
 
 @section('title', 'Login')
 
-@section('header', 'Sign in to your account')
+@section('header', 'Laravel CRUD')
 
 @section('content')
     <form class="space-y-6" method="POST" action="{{ route('login') }}">
